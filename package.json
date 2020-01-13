@@ -85,7 +85,7 @@
     "jest-environment-node": "^25.0.0",
     "jest-runner-eslint": "^0.7.5",
     "jest-serializer-html": "^7.0.0",
-    "jest-styled-components": "^6.3.4",
+    "jest-styled-components": "^7.0.0",
     "jest-watch-select-projects": "^1.0.0",
     "jest-watch-typeahead": "^0.4.2",
     "lerna": "^3.19.0",
