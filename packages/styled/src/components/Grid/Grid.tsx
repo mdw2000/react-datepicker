@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {
   gridAutoColumns,
   GridAutoColumnsProps,
@@ -26,6 +26,8 @@ import {
   SpaceProps,
   style,
   compose,
+  flexDirection,
+  FlexDirectionProps,
 } from 'styled-system'
 
 interface GridProps
@@ -40,9 +42,11 @@ interface GridProps
     GridTemplateAreasProps,
     GridTemplateColumnsProps,
     SpaceProps,
+    FlexDirectionProps,
     GridTemplateRowsProps {
   daySizeGridTemplateColumns?: number | (number | null)[] | undefined
   numberOfMonthsGridTemplateColumns?: number | (number | null)[] | undefined
+  direction?: 'row' | 'column' | undefined
 }
 
 const daySizeGridTemplateColumns = style({
@@ -71,10 +75,16 @@ const composeGridStyles = compose(
   alignItems,
   justifyContent,
   space,
+  flexDirection,
 )
 
 const Grid = styled('div')<GridProps>`
   display: grid;
+   ${({flexDirection}) =>
+     flexDirection &&
+     css`
+       display: flex;
+     `}
   ${composeGridStyles}
   ${daySizeGridTemplateColumns}
 `
