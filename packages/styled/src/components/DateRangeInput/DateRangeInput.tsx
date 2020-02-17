@@ -14,6 +14,8 @@ import {
   zIndex,
   ZIndexProps,
   compose,
+  flexDirection,
+  FlexDirectionProps,
 } from 'styled-system'
 import {
   UseDatepickerProps,
@@ -39,7 +41,9 @@ import globalStyles from '../../globalStyles'
 interface RtlProps {
   rtl: boolean
 }
+
 interface WrapperProps extends RtlProps, ZIndexProps {}
+
 const Wrapper = styled(Box)<WrapperProps>`
   ${zIndex}
   ${({rtl}) =>
@@ -62,9 +66,13 @@ const InputArrowIcon = styled(ArrowIcon)<InputArrowIconProps>`
     `}
 `
 
-interface StyledGridProps extends BackgroundProps, BorderProps, BorderRadiusProps {}
+interface StyledGridProps
+  extends BackgroundProps,
+    BorderProps,
+    BorderRadiusProps,
+    FlexDirectionProps {}
 
-const composeInputGridStyles = compose(background, border, borderRadius)
+const composeInputGridStyles = compose(background, border, borderRadius, flexDirection)
 
 const InputGrid = styled(Grid)<StyledGridProps>`
   ${composeInputGridStyles}
@@ -105,20 +113,30 @@ function getPlacement(placement: 'bottom' | 'top', rtl: boolean) {
 export interface DateRangeInputProps extends UseDatepickerProps {
   displayFormat?: string | FormatFunction
   phrases?: DateRangeInputPhrases
+
   onFocusChange(focusInput: FocusedInput): void
+
   showStartDateCalendarIcon?: boolean
   showEndDateCalendarIcon?: boolean
+
   onClose?(): void
+
   vertical?: boolean
+  verticalInputs?: boolean
   showResetDates?: boolean
   showSelectedDates?: boolean
   showClose?: boolean
   rtl?: boolean
   placement?: 'top' | 'bottom'
+
   dayLabelFormat?(date: Date): string
+
   weekdayLabelFormat?(date: Date): string
+
   monthLabelFormat?(date: Date): string
+
   onDayRender?(date: Date): React.ReactNode
+
   startDateInputId?: string
   endDateInputId?: string
   unavailableDates?: Date[]
@@ -145,6 +163,7 @@ function DateRangeInput({
   showSelectedDates = true,
   showResetDates = true,
   vertical = false,
+  verticalInputs = true,
   rtl = false,
   isDateBlocked = () => false,
   minBookingDays = 1,
@@ -228,6 +247,7 @@ function DateRangeInput({
           gridTemplateRows={theme.dateRangeGridTemplateRows}
           border={theme.dateRangeBorder}
           borderRadius={theme.dateRangeBorderRadius}
+          flexDirection={verticalInputs ? 'column' : undefined}
         >
           <Input
             id={startDateInputId}
@@ -244,17 +264,23 @@ function DateRangeInput({
             // @ts-ignore
             dateFormat={displayFormat}
           />
-          <Flex alignItems="center" justifyContent="center">
-            <InputArrowIcon
-              // @ts-ignore
-              width={theme.dateRangeArrowIconWidth}
-              // @ts-ignore
-              height={theme.dateRangeArrowIconHeight}
-              color={theme.dateRangeArrowIconColor}
-              opacity={theme.dateRangeArrowIconOpacity}
-              rtl={rtl}
-            />
-          </Flex>
+          {verticalInputs ? (
+            <Flex alignItems="center" justifyContent="center">
+              <br />
+            </Flex>
+          ) : (
+            <Flex alignItems="center" justifyContent="center">
+              <InputArrowIcon
+                // @ts-ignore
+                width={theme.dateRangeArrowIconWidth}
+                // @ts-ignore
+                height={theme.dateRangeArrowIconHeight}
+                color={theme.dateRangeArrowIconColor}
+                opacity={theme.dateRangeArrowIconOpacity}
+                rtl={rtl}
+              />
+            </Flex>
+          )}
           <Input
             id={endDateInputId}
             ariaLabel={phrases.endDateAriaLabel}
