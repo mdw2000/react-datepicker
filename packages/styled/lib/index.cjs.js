@@ -71,9 +71,9 @@ function s(e) {
         i = a.width ? String(a.width) : o
       n = e.formattingValues[i] || e.formattingValues[o]
     } else {
-      var s = e.defaultWidth,
-        l = a.width ? String(a.width) : e.defaultWidth
-      n = e.values[l] || e.values[s]
+      var l = e.defaultWidth,
+        s = a.width ? String(a.width) : e.defaultWidth
+      n = e.values[s] || e.values[l]
     }
     return n[e.argumentCallback ? e.argumentCallback(t) : t]
   }
@@ -84,13 +84,13 @@ function c(e) {
       a = r || {},
       o = a.width,
       i = (o && e.matchPatterns[o]) || e.matchPatterns[e.defaultMatchWidth],
-      s = n.match(i)
-    if (!s) return null
-    var l,
-      c = s[0],
+      l = n.match(i)
+    if (!l) return null
+    var s,
+      c = l[0],
       d = (o && e.parsePatterns[o]) || e.parsePatterns[e.defaultParseWidth]
     return (
-      (l =
+      (s =
         '[object Array]' === Object.prototype.toString.call(d)
           ? (function(e, t) {
               for (var r = 0; r < e.length; r++) if (t(e[r])) return r
@@ -102,8 +102,8 @@ function c(e) {
             })(d, function(e) {
               return e.test(n)
             })),
-      (l = e.valueCallback ? e.valueCallback(l) : l),
-      {value: (l = a.valueCallback ? a.valueCallback(l) : l), rest: n.slice(c.length)}
+      (s = e.valueCallback ? e.valueCallback(s) : s),
+      {value: (s = a.valueCallback ? a.valueCallback(s) : s), rest: n.slice(c.length)}
     )
   }
 }
@@ -286,8 +286,8 @@ var d,
           var o = a[0],
             i = r.match(d.parsePattern)
           if (!i) return null
-          var s = d.valueCallback ? d.valueCallback(i[0]) : i[0]
-          return {value: (s = n.valueCallback ? n.valueCallback(s) : s), rest: r.slice(o.length)}
+          var l = d.valueCallback ? d.valueCallback(i[0]) : i[0]
+          return {value: (l = n.valueCallback ? n.valueCallback(l) : l), rest: r.slice(o.length)}
         }),
       era: c({
         matchPatterns: {
@@ -518,10 +518,10 @@ function M(e, t) {
     o = null == a ? 0 : f(a),
     i = null == r.weekStartsOn ? o : f(r.weekStartsOn)
   if (!(i >= 0 && i <= 6)) throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  var s = h(e),
-    l = s.getUTCDay(),
-    c = (l < i ? 7 : 0) + l - i
-  return s.setUTCDate(s.getUTCDate() - c), s.setUTCHours(0, 0, 0, 0), s
+  var l = h(e),
+    s = l.getUTCDay(),
+    c = (s < i ? 7 : 0) + s - i
+  return l.setUTCDate(l.getUTCDate() - c), l.setUTCHours(0, 0, 0, 0), l
 }
 function U(e, t) {
   if (arguments.length < 1)
@@ -531,15 +531,15 @@ function U(e, t) {
     a = t || {},
     o = a.locale,
     i = o && o.options && o.options.firstWeekContainsDate,
-    s = null == i ? 1 : f(i),
-    l = null == a.firstWeekContainsDate ? s : f(a.firstWeekContainsDate)
-  if (!(l >= 1 && l <= 7))
+    l = null == i ? 1 : f(i),
+    s = null == a.firstWeekContainsDate ? l : f(a.firstWeekContainsDate)
+  if (!(s >= 1 && s <= 7))
     throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively')
   var c = new Date(0)
-  c.setUTCFullYear(n + 1, 0, l), c.setUTCHours(0, 0, 0, 0)
+  c.setUTCFullYear(n + 1, 0, s), c.setUTCHours(0, 0, 0, 0)
   var d = M(c, t),
     u = new Date(0)
-  u.setUTCFullYear(n, 0, l), u.setUTCHours(0, 0, 0, 0)
+  u.setUTCFullYear(n, 0, s), u.setUTCHours(0, 0, 0, 0)
   var p = M(u, t)
   return r.getTime() >= d.getTime() ? n + 1 : r.getTime() >= p.getTime() ? n : n - 1
 }
@@ -550,12 +550,12 @@ function E(e, t, r) {
     a = n.locale,
     o = a && a.options && a.options.weekStartsOn,
     i = null == o ? 0 : f(o),
-    s = null == n.weekStartsOn ? i : f(n.weekStartsOn)
-  if (!(s >= 0 && s <= 6)) throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  var l = h(e),
+    l = null == n.weekStartsOn ? i : f(n.weekStartsOn)
+  if (!(l >= 0 && l <= 6)) throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
+  var s = h(e),
     c = f(t),
-    d = (((c % 7) + 7) % 7 < s ? 7 : 0) + c - l.getUTCDay()
-  return l.setUTCDate(l.getUTCDate() + d), l
+    d = (((c % 7) + 7) % 7 < l ? 7 : 0) + c - s.getUTCDay()
+  return s.setUTCDate(s.getUTCDate() + d), s
 }
 function q(e) {
   if (arguments.length < 1)
@@ -609,9 +609,9 @@ function O(e, t) {
           a = n && n.options && n.options.firstWeekContainsDate,
           o = null == a ? 1 : f(a),
           i = null == r.firstWeekContainsDate ? o : f(r.firstWeekContainsDate),
-          s = U(e, t),
-          l = new Date(0)
-        return l.setUTCFullYear(s, 0, i), l.setUTCHours(0, 0, 0, 0), M(l, t)
+          l = U(e, t),
+          s = new Date(0)
+        return s.setUTCFullYear(l, 0, i), s.setUTCHours(0, 0, 0, 0), M(s, t)
       })(r, t).getTime()
   return Math.round(n / H) + 1
 }
@@ -2226,9 +2226,9 @@ function Lt(e, t) {
   var o = [],
     i = n
   i.setHours(0, 0, 0, 0)
-  var s = t && 'step' in t ? Number(t.step) : 1
-  if (s < 1 || isNaN(s)) throw new RangeError('`options.step` must be a number greater than 1')
-  for (; i.getTime() <= a; ) o.push(h(i)), i.setDate(i.getDate() + s), i.setHours(0, 0, 0, 0)
+  var l = t && 'step' in t ? Number(t.step) : 1
+  if (l < 1 || isNaN(l)) throw new RangeError('`options.step` must be a number greater than 1')
+  for (; i.getTime() <= a; ) o.push(h(i)), i.setDate(i.getDate() + l), i.setHours(0, 0, 0, 0)
   return o
 }
 function Wt(e, t) {
@@ -2240,10 +2240,10 @@ function Wt(e, t) {
     o = null == a ? 0 : f(a),
     i = null == r.weekStartsOn ? o : f(r.weekStartsOn)
   if (!(i >= 0 && i <= 6)) throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  var s = h(e),
-    l = s.getDay(),
-    c = 6 + (l < i ? -7 : 0) - (l - i)
-  return s.setDate(s.getDate() + c), s.setHours(23, 59, 59, 999), s
+  var l = h(e),
+    s = l.getDay(),
+    c = 6 + (s < i ? -7 : 0) - (s - i)
+  return l.setDate(l.getDate() + c), l.setHours(23, 59, 59, 999), l
 }
 function Ft(e) {
   if (arguments.length < 1)
@@ -2260,10 +2260,10 @@ function Qt(e, t) {
     o = null == a ? 0 : f(a),
     i = null == r.weekStartsOn ? o : f(r.weekStartsOn)
   if (!(i >= 0 && i <= 6)) throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  var s = h(e),
-    l = s.getDay(),
-    c = (l < i ? 7 : 0) + l - i
-  return s.setDate(s.getDate() - c), s.setHours(0, 0, 0, 0), s
+  var l = h(e),
+    s = l.getDay(),
+    c = (s < i ? 7 : 0) + s - i
+  return l.setDate(l.getDate() - c), l.setHours(0, 0, 0, 0), l
 }
 function Rt(e) {
   var t = void 0 === e ? {} : e,
@@ -2293,30 +2293,30 @@ function It(e) {
             return Bt(e, 'dd')
           }
         : o,
-    s = new Date(t, r),
-    l = Ft(s),
+    l = new Date(t, r),
+    s = Ft(l),
     c = (function(e) {
       if (arguments.length < 1)
         throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
       return h(e).getDay()
-    })(l),
+    })(s),
     d = (function(e) {
       if (arguments.length < 1)
         throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
       var t = h(e),
         r = t.getMonth()
       return t.setFullYear(t.getFullYear(), r + 1, 0), t.setHours(23, 59, 59, 999), t
-    })(s)
+    })(l)
   return (function() {
     for (var e = 0, t = 0, r = arguments.length; t < r; t++) e += arguments[t].length
     var n = Array(e),
       a = 0
     for (t = 0; t < r; t++)
-      for (var o = arguments[t], i = 0, s = o.length; i < s; i++, a++) n[a] = o[i]
+      for (var o = arguments[t], i = 0, l = o.length; i < l; i++, a++) n[a] = o[i]
     return n
   })(
     Array.from(Array(c >= a ? c - a : 6 - a + c + 1).keys()).fill(0),
-    Lt({start: l, end: d}).map(function(e) {
+    Lt({start: s, end: d}).map(function(e) {
       return {date: e, dayLabel: i(e)}
     }),
   )
@@ -2337,8 +2337,8 @@ function zt(e) {
     a = void 0 === n ? 1 : n,
     o = e.dayLabelFormat,
     i = void 0 === o ? Xt : o,
-    s = e.weekdayLabelFormat,
-    l = void 0 === s ? Gt : s,
+    l = e.weekdayLabelFormat,
+    s = void 0 === l ? Gt : l,
     c = e.monthLabelFormat,
     d = void 0 === c ? At : c
   return {
@@ -2350,9 +2350,9 @@ function zt(e) {
     ),
     weekdayLabels: React.useMemo(
       function() {
-        return Rt({firstDayOfWeek: a, weekdayLabelFormat: l})
+        return Rt({firstDayOfWeek: a, weekdayLabelFormat: s})
       },
-      [a, l],
+      [a, s],
     ),
     monthLabel: d(new Date(t, r)),
   }
@@ -2434,8 +2434,8 @@ function ne(e) {
     a = e.isDateBlockedFn,
     o = e.startDate,
     i = e.endDate,
-    s = e.minBookingDays,
-    l = void 0 === s ? 1 : s,
+    l = e.minBookingDays,
+    s = void 0 === l ? 1 : l,
     c = e.unavailableDates,
     d = void 0 === c ? [] : c,
     u = r ? new Date(r.getFullYear(), r.getMonth(), r.getDate(), 0, 0, 0) : r,
@@ -2444,7 +2444,7 @@ function ne(e) {
     Vt(d, t) ||
     (u && jt(t, u)) ||
     (p && Kt(t, p)) ||
-    (o && !i && l > 1 && Jt(t, {start: o, end: Nt(o, l - 2)})) ||
+    (o && !i && s > 1 && Jt(t, {start: o, end: Nt(o, s - 2)})) ||
     (a && a(t))
   )
 }
@@ -2498,12 +2498,12 @@ function se(e) {
     a = e.minBookingDays,
     o = e.exactMinBookingDays,
     i = e.minBookingDate,
-    s = e.maxBookingDate,
-    l = !i || !jt(t, Nt(i, -1)),
-    c = !s || !Kt(Nt(t, a - 1), s)
+    l = e.maxBookingDate,
+    s = !i || !jt(t, Nt(i, -1)),
+    c = !l || !Kt(Nt(t, a - 1), l)
   return !(
     (!t || 1 !== a || r || n(t)) &&
-    ((t && a > 1 && !r && !o) || (t && a > 0 && o && l && c) || (t && a > 0 && o && !i && !s)
+    ((t && a > 1 && !r && !o) || (t && a > 0 && o && s && c) || (t && a > 0 && o && !i && !l)
       ? Lt({start: t, end: Nt(t, a - 1)}).some(function(e) {
           return n(e)
         })
@@ -2525,9 +2525,9 @@ function le(e) {
     a = e.minBookingDate,
     o = e.maxBookingDate,
     i = e.onDatesChange,
-    s = e.initialVisibleMonth,
-    l = e.exactMinBookingDays,
-    c = void 0 !== l && l,
+    l = e.initialVisibleMonth,
+    s = e.exactMinBookingDays,
+    c = void 0 !== s && s,
     d = e.minBookingDays,
     u = void 0 === d ? 1 : d,
     p = e.numberOfMonths,
@@ -2544,7 +2544,7 @@ function le(e) {
     b = e.unavailableDates,
     w = void 0 === b ? [] : b,
     v = React.useState(function() {
-      return ie(g, t || s || null)
+      return ie(g, t || l || null)
     }),
     D = v[0],
     k = v[1],
@@ -2651,12 +2651,12 @@ function le(e) {
         if (e) {
           var n = !W(e) || (t && _t(e, t)),
             i = !a || !jt(e, Nt(a, -1)),
-            s = !o || !Kt(e, o),
-            l = Nt(e, u - 1),
-            d = !a || !jt(l, a),
-            p = !o || !Kt(l, o),
-            g = c && u > 1 && i && s && d && p,
-            f = t && !r && !c && i && s,
+            l = !o || !Kt(e, o),
+            s = Nt(e, u - 1),
+            d = !a || !jt(s, a),
+            p = !o || !Kt(s, o),
+            g = c && u > 1 && i && l && d && p,
+            f = t && !r && !c && i && l,
             m = !(u > 1 && t) || Jt(e, {start: t, end: Nt(t, u - 2)}),
             h = t && _t(e, t) && m
           n && (g || f || h) ? _(e) : null !== T && _(null)
@@ -2715,16 +2715,16 @@ function fe(e) {
     a = e.isDateFocused,
     o = e.isFirstOrLastSelectedDate,
     i = e.isDateHovered,
-    s = e.isDateBlocked,
-    l = e.onDateSelect,
+    l = e.isDateBlocked,
+    s = e.onDateSelect,
     c = e.onDateFocus,
     d = e.onDateHover,
     u = e.dayRef,
     p = React.useCallback(
       function() {
-        return l(t)
+        return s(t)
       },
-      [t, l],
+      [t, s],
     ),
     g = React.useCallback(
       function() {
@@ -2738,7 +2738,7 @@ function fe(e) {
     },
     [u, t, a],
   )
-  var f = s(t) && !i(t)
+  var f = l(t) && !i(t)
   return {
     tabIndex: null === r || a(t) ? 0 : -1,
     isSelected: n(t),
@@ -2811,7 +2811,7 @@ var objectAssign = shouldUseNative()
           for (var i in (r = Object(arguments[o]))) hasOwnProperty.call(r, i) && (a[i] = r[i])
           if (getOwnPropertySymbols) {
             n = getOwnPropertySymbols(r)
-            for (var s = 0; s < n.length; s++) propIsEnumerable.call(r, n[s]) && (a[n[s]] = r[n[s]])
+            for (var l = 0; l < n.length; l++) propIsEnumerable.call(r, n[l]) && (a[n[l]] = r[n[l]])
           }
         }
         return a
@@ -2862,22 +2862,22 @@ var objectAssign = shouldUseNative()
           o = e.theme && e.theme.disableStyledSystemCache
         for (var i in e)
           if (t[i]) {
-            var s = t[i],
-              l = e[i],
-              c = get(e.theme, s.scale, s.defaults)
-            if ('object' != typeof l) objectAssign(n, s(l, c, e))
+            var l = t[i],
+              s = e[i],
+              c = get(e.theme, l.scale, l.defaults)
+            if ('object' != typeof s) objectAssign(n, l(s, c, e))
             else {
               if (
                 ((r.breakpoints =
                   (!o && r.breakpoints) || get(e.theme, 'breakpoints', defaults.breakpoints)),
-                Array.isArray(l))
+                Array.isArray(s))
               ) {
                 ;(r.media = (!o && r.media) || [null].concat(r.breakpoints.map(createMediaQuery))),
-                  (n = merge(n, parseResponsiveStyle(r.media, s, c, l, e)))
+                  (n = merge(n, parseResponsiveStyle(r.media, l, c, s, e)))
                 continue
               }
-              null !== l &&
-                ((n = merge(n, parseResponsiveObject(r.breakpoints, s, c, l, e))), (a = !0))
+              null !== s &&
+                ((n = merge(n, parseResponsiveObject(r.breakpoints, l, c, s, e))), (a = !0))
             }
           }
         return a && (n = sort(n)), n
@@ -2899,10 +2899,10 @@ var objectAssign = shouldUseNative()
     var o = {}
     return (
       n.slice(0, e.length).forEach(function(n, i) {
-        var s,
-          l = e[i],
+        var l,
+          s = e[i],
           c = t(n, r, a)
-        l ? objectAssign(o, (((s = {})[l] = objectAssign({}, o[l], c)), s)) : objectAssign(o, c)
+        s ? objectAssign(o, (((l = {})[s] = objectAssign({}, o[s], c)), l)) : objectAssign(o, c)
       }),
       o
     )
@@ -2910,13 +2910,13 @@ var objectAssign = shouldUseNative()
   parseResponsiveObject = function(e, t, r, n, a) {
     var o = {}
     for (var i in n) {
-      var s = e[i],
-        l = t(n[i], r, a)
-      if (s) {
+      var l = e[i],
+        s = t(n[i], r, a)
+      if (l) {
         var c,
-          d = createMediaQuery(s)
-        objectAssign(o, (((c = {})[d] = objectAssign({}, o[d], l)), c))
-      } else objectAssign(o, l)
+          d = createMediaQuery(l)
+        objectAssign(o, (((c = {})[d] = objectAssign({}, o[d], s)), c))
+      } else objectAssign(o, s)
     }
     return o
   },
@@ -2928,7 +2928,7 @@ var objectAssign = shouldUseNative()
       o = void 0 === a ? getValue : a,
       i = e.defaultScale
     t = t || [r]
-    var s = function(e, r, n) {
+    var l = function(e, r, n) {
       var a = {},
         i = o(e, r, n)
       if (null !== i)
@@ -2939,7 +2939,7 @@ var objectAssign = shouldUseNative()
           a
         )
     }
-    return (s.scale = n), (s.defaults = i), s
+    return (l.scale = n), (l.defaults = i), l
   },
   system = function(e) {
     void 0 === e && (e = {})
@@ -3201,6 +3201,7 @@ function _extends() {
     }).apply(this, arguments)
 }
 var templateObject_1,
+  templateObject_2,
   templateObject_1$1,
   templateObject_1$2,
   get$1 = function(e, t, r, n, a) {
@@ -3349,9 +3350,9 @@ var templateObject_1,
         var i = 'function' == typeof e[o] ? e[o](t) : e[o]
         if (null != i)
           if (Array.isArray(i))
-            for (var s = 0; s < i.slice(0, a.length).length; s++) {
-              var l = a[s]
-              null != i[s] && (l ? ((r[l] = r[l] || {}), (r[l][o] = i[s])) : (r[o] = i[s]))
+            for (var l = 0; l < i.slice(0, a.length).length; l++) {
+              var s = a[l]
+              null != i[l] && (s ? ((r[s] = r[s] || {}), (r[s][o] = i[l])) : (r[o] = i[l]))
             }
           else r[o] = i
       }
@@ -3365,13 +3366,13 @@ var templateObject_1,
         a = {},
         o = 'function' == typeof t ? t(n) : t,
         i = responsive(o)(n)
-      for (var s in i) {
-        var l = i[s],
-          c = 'function' == typeof l ? l(n) : l
-        if ('variant' !== s)
-          if (c && 'object' == typeof c) a[s] = e(c)(n)
+      for (var l in i) {
+        var s = i[l],
+          c = 'function' == typeof s ? s(n) : s
+        if ('variant' !== l)
+          if (c && 'object' == typeof c) a[l] = e(c)(n)
           else {
-            var d = get$1(aliases, s, s),
+            var d = get$1(aliases, l, l),
               u = get$1(scales, d),
               p = get$1(n, u, get$1(n, d, {})),
               g = get$1(transforms, d, get$1)(p, c, c)
@@ -3390,16 +3391,16 @@ var templateObject_1,
       a = e.prop,
       o = void 0 === a ? 'variant' : a,
       i = e.variants,
-      s = void 0 === i ? {} : i,
-      l = e.key
-    ;((r = Object.keys(s).length
+      l = void 0 === i ? {} : i,
+      s = e.key
+    ;((r = Object.keys(l).length
       ? function(e, t, r) {
           return css(get(t, e, null))(r.theme)
         }
       : function(e, t) {
           return get(t, e, null)
-        }).scale = n || l),
-      (r.defaults = s)
+        }).scale = n || s),
+      (r.defaults = l)
     var c = (((t = {})[o] = r), t)
     return createParser(c)
   },
@@ -3444,18 +3445,18 @@ var templateObject_1,
       a = e.key,
       o = e.transformValue,
       i = e.scale,
-      s = e.properties,
-      l = {}
+      l = e.properties,
+      s = {}
     return (
-      (l[t] = createStyleFunction({
-        properties: s,
+      (s[t] = createStyleFunction({
+        properties: l,
         property: r || t,
         scale: a,
         defaultScale: i,
         transform: o,
       })),
-      n && (l[n] = l[t]),
-      createParser(l)
+      n && (s[n] = s[t]),
+      createParser(s)
     )
   },
   datepickerPhrases = {
@@ -3498,13 +3499,26 @@ var templateObject_1,
     alignItems,
     justifyContent,
     space,
+    flexDirection,
   ),
   Grid = styled__default('div')(
-    templateObject_1 ||
-      (templateObject_1 = __makeTemplateObject(
-        ['\n  display: grid;\n  ', '\n  ', '\n'],
-        ['\n  display: grid;\n  ', '\n  ', '\n'],
+    templateObject_2 ||
+      (templateObject_2 = __makeTemplateObject(
+        ['\n  display: grid;\n   ', '\n  ', '\n  ', '\n'],
+        ['\n  display: grid;\n   ', '\n  ', '\n  ', '\n'],
       )),
+    function(e) {
+      return (
+        e.flexDirection &&
+        styled.css(
+          templateObject_1 ||
+            (templateObject_1 = __makeTemplateObject(
+              ['\n       display: flex;\n     '],
+              ['\n       display: flex;\n     '],
+            )),
+        )
+      )
+    },
     composeGridStyles,
     daySizeGridTemplateColumns,
   ),
@@ -3616,7 +3630,7 @@ function getThemeProp(e, t, r) {
     : t
 }
 var templateObject_1$3,
-  templateObject_2,
+  templateObject_2$1,
   templateObject_3,
   placeholderColor = style({prop: 'placeholderColor', cssProperty: 'color'}),
   placeholderFontWeight = style({prop: 'placeholderFontWeight', cssProperty: 'fontWeight'}),
@@ -3628,8 +3642,8 @@ var templateObject_1$3,
   ),
   composeCalendarWrapperStyles = compose(position, left, right, top, height, width),
   CalendarWrapper = styled__default('div')(
-    templateObject_2 ||
-      (templateObject_2 = __makeTemplateObject(
+    templateObject_2$1 ||
+      (templateObject_2$1 = __makeTemplateObject(
         ['\n  ', '\n  cursor: pointer;\n\n  svg {\n    display: block;\n  }\n'],
         ['\n  ', '\n  cursor: pointer;\n\n  svg {\n    display: block;\n  }\n'],
       )),
@@ -3687,23 +3701,23 @@ function Input(e) {
     a = e.isActive,
     o = e.ariaLabel,
     i = e.onClick,
-    s = e.value,
-    l = e.showCalendarIcon,
+    l = e.value,
+    s = e.showCalendarIcon,
     c = e.padding,
     d = e.rtl,
     u = e.disableAccessibility,
     p = e.dateFormat,
     g = e.onChange,
     f = void 0 === g ? function() {} : g,
-    m = React.useState(s),
+    m = React.useState(l),
     h = m[0],
     y = m[1],
     b = React.useRef(null)
   React.useEffect(
     function() {
-      y(s)
+      y(l)
     },
-    [s],
+    [l],
   )
   var w = React.useContext(styled.ThemeContext),
     v = useThemeProps({
@@ -3747,7 +3761,7 @@ function Input(e) {
       borderRadius: v.inputLabelBorderRadius,
       m: v.inputLabelMargin,
     },
-    l &&
+    s &&
       React__default.createElement(
         CalendarWrapper,
         {
@@ -3818,16 +3832,16 @@ function ArrowIcon(e) {
     a = e.direction,
     o = void 0 === a ? 'right' : a,
     i = e.className,
-    s = void 0 === i ? '' : i,
-    l = calculateAngle(o)
+    l = void 0 === i ? '' : i,
+    s = calculateAngle(o)
   return React__default.createElement(
     'svg',
     {
       width: r,
       height: t,
       color: n,
-      className: s,
-      transform: 'rotate(' + l + ' 0 0)',
+      className: l,
+      transform: 'rotate(' + s + ' 0 0)',
       viewBox: '0 0 9 12',
       xmlns: 'http://www.w3.org/2000/svg',
     },
@@ -3840,7 +3854,7 @@ function ArrowIcon(e) {
 }
 var templateObject_1$4,
   templateObject_1$5,
-  templateObject_2$1,
+  templateObject_2$2,
   composeStyles = compose(fontFamily, fontSize, fontWeight, color, lineHeight, space),
   Text = styled__default('div')(
     templateObject_1$4 ||
@@ -3848,8 +3862,8 @@ var templateObject_1$4,
     composeStyles,
   ),
   StyledDate = styled__default(Text)(
-    templateObject_2$1 ||
-      (templateObject_2$1 = __makeTemplateObject(
+    templateObject_2$2 ||
+      (templateObject_2$2 = __makeTemplateObject(
         [
           "\n  position: relative;\n  display: inline-block;\n\n  &:after {\n    content: '';\n    position: absolute;\n    height: 2px;\n    width: 100%;\n    bottom: 0;\n    left: 0;\n    z-index: 1;\n  }\n\n  ",
           '\n',
@@ -3923,7 +3937,7 @@ function SelectDate(e) {
   )
 }
 var templateObject_1$6,
-  templateObject_2$2,
+  templateObject_2$3,
   templateObject_3$1,
   templateObject_4,
   templateObject_5,
@@ -4108,8 +4122,8 @@ var templateObject_1$6,
             )
           : ''
         : styled.css(
-            templateObject_2$2 ||
-              (templateObject_2$2 = __makeTemplateObject(
+            templateObject_2$3 ||
+              (templateObject_2$3 = __makeTemplateObject(
                 ['\n        &:hover {\n          ', '\n          ', '\n        }\n      '],
                 ['\n        &:hover {\n          ', '\n          ', '\n        }\n      '],
               )),
@@ -4133,8 +4147,8 @@ function getColor(e, t, r, n) {
   var a = n.selectedFirstOrLast,
     o = n.normal,
     i = n.selected,
-    s = n.rangeHover
-  return t ? a : e ? i : r ? s : o
+    l = n.rangeHover
+  return t ? a : e ? i : r ? l : o
 }
 function Day(e) {
   var t = e.day,
@@ -4143,8 +4157,8 @@ function Day(e) {
     a = React.useContext(DatepickerContext),
     o = a.focusedDate,
     i = a.isDateFocused,
-    s = a.isDateSelected,
-    l = a.isDateHovered,
+    l = a.isDateSelected,
+    s = a.isDateHovered,
     c = a.isDateBlocked,
     d = a.isFirstOrLastSelectedDate,
     u = a.onDateSelect,
@@ -4155,8 +4169,8 @@ function Day(e) {
       date: r,
       focusedDate: o,
       isDateFocused: i,
-      isDateSelected: s,
-      isDateHovered: l,
+      isDateSelected: l,
+      isDateHovered: s,
       isDateBlocked: c,
       isFirstOrLastSelectedDate: d,
       onDateFocus: p,
@@ -4270,7 +4284,7 @@ function Day(e) {
   )
 }
 var templateObject_1$7,
-  templateObject_2$3,
+  templateObject_2$4,
   opacity0To100 = styled.keyframes(
     templateObject_1$7 ||
       (templateObject_1$7 = __makeTemplateObject(
@@ -4279,8 +4293,8 @@ var templateObject_1$7,
       )),
   ),
   MonthWrapper = styled__default('div')(
-    templateObject_2$3 ||
-      (templateObject_2$3 = __makeTemplateObject(
+    templateObject_2$4 ||
+      (templateObject_2$4 = __makeTemplateObject(
         [
           '\n  animation-name: ',
           ';\n  animation-duration: 0.25s;\n  animation-timing-function: ease-in;\n\n  &:last-child {\n    padding: 0 1px 1px 0;\n  }\n',
@@ -4306,8 +4320,8 @@ var templateObject_1$7,
       }),
       o = a.days,
       i = a.weekdayLabels,
-      s = a.monthLabel,
-      l = useThemeProps({
+      l = a.monthLabel,
+      s = useThemeProps({
         daySize: globalStyles.daySize,
         monthLabelMargin: '0 0 28px',
         monthDayLabelMargin: '0 0 16px',
@@ -4317,23 +4331,23 @@ var templateObject_1$7,
       null,
       React__default.createElement(
         Flex,
-        {justifyContent: 'center', m: l.monthLabelMargin},
-        React__default.createElement(MonthLabel, {label: s}),
+        {justifyContent: 'center', m: s.monthLabelMargin},
+        React__default.createElement(MonthLabel, {label: l}),
       ),
       React__default.createElement(
         Grid,
-        {daySizeGridTemplateColumns: l.daySize},
+        {daySizeGridTemplateColumns: s.daySize},
         i.map(function(e) {
           return React__default.createElement(
             Flex,
-            {key: e, justifyContent: 'center', m: l.monthDayLabelMargin},
+            {key: e, justifyContent: 'center', m: s.monthDayLabelMargin},
             React__default.createElement(MonthLabel$1, {label: e}),
           )
         }),
       ),
       React__default.createElement(
         Grid,
-        {daySizeGridTemplateColumns: l.daySize},
+        {daySizeGridTemplateColumns: s.daySize},
         o.map(function(e, t) {
           return 'object' == typeof e
             ? React__default.createElement(Day, {date: e.date, key: e.dayLabel, day: e.dayLabel})
@@ -4367,7 +4381,7 @@ function CaretIcon(e) {
   )
 }
 var templateObject_1$8,
-  templateObject_2$4,
+  templateObject_2$5,
   templateObject_3$2,
   StyledReactDates = styled__default('button')(
     templateObject_1$8 ||
@@ -4387,8 +4401,8 @@ var templateObject_1$8,
       return (
         e.rtl &&
         styled.css(
-          templateObject_2$4 ||
-            (templateObject_2$4 = __makeTemplateObject(
+          templateObject_2$5 ||
+            (templateObject_2$5 = __makeTemplateObject(
               ['\n      transform: rotate(-180deg);\n    '],
               ['\n      transform: rotate(-180deg);\n    '],
             )),
@@ -4441,10 +4455,10 @@ function ResetDates(e) {
   )
 }
 var templateObject_1$9,
-  templateObject_2$5,
+  templateObject_2$6,
   Svg = styled__default('svg')(
-    templateObject_2$5 ||
-      (templateObject_2$5 = __makeTemplateObject(['\n  ', '\n'], ['\n  ', '\n'])),
+    templateObject_2$6 ||
+      (templateObject_2$6 = __makeTemplateObject(['\n  ', '\n'], ['\n  ', '\n'])),
     function(e) {
       var t = e.angle
       return styled.css(
@@ -4477,16 +4491,16 @@ function CaretIcon$1(e) {
     a = e.direction,
     o = void 0 === a ? 'right' : a,
     i = e.className,
-    s = void 0 === i ? '' : i,
-    l = calculateAngle$1(o)
+    l = void 0 === i ? '' : i,
+    s = calculateAngle$1(o)
   return React__default.createElement(
     Svg,
     {
       width: r,
       height: t,
       color: n,
-      className: s,
-      angle: l,
+      className: l,
+      angle: s,
       viewBox: '0 0 9 6',
       xmlns: 'http://www.w3.org/2000/svg',
     },
@@ -4515,7 +4529,7 @@ function NavButton(e) {
     a = e.rtl,
     o = e.ariaLabel,
     i = React.useContext(styled.ThemeContext),
-    s = useThemeProps({
+    l = useThemeProps({
       navButtonWidth: n ? '48px' : '30px',
       navButtonHeight: n ? '48px' : '30px',
       navButtonBackground: getThemeProp('white', globalStyles.colors.white, i),
@@ -4526,7 +4540,7 @@ function NavButton(e) {
       navButtonIconWidth: n ? '28px' : '18px',
       navButtonIconColor: getThemeProp('greey', globalStyles.colors.greey, i),
     })
-  function l() {
+  function s() {
     return 'next' !== t || n
       ? 'next' === t && n
         ? 'down'
@@ -4538,13 +4552,13 @@ function NavButton(e) {
   return React__default.createElement(
     StyledNavButton,
     {
-      width: s.navButtonWidth,
-      height: s.navButtonHeight,
-      background: s.navButtonBackground,
-      border: s.navButtonBorder,
-      borderRight: 'up' !== l() || a ? s.navButtonBorder : 'unset',
-      borderLeft: 'up' === l() && a ? 'unset' : s.navButtonBorder,
-      p: s.navButtonPadding,
+      width: l.navButtonWidth,
+      height: l.navButtonHeight,
+      background: l.navButtonBackground,
+      border: l.navButtonBorder,
+      borderRight: 'up' !== s() || a ? l.navButtonBorder : 'unset',
+      borderLeft: 'up' === s() && a ? 'unset' : l.navButtonBorder,
+      p: l.navButtonPadding,
       type: 'button',
       'aria-label': o,
       onClick: r,
@@ -4554,10 +4568,10 @@ function NavButton(e) {
       'data-testid': 'DatepickerNavButton',
     },
     React__default.createElement(CaretIcon$1, {
-      width: s.navButtonIconWidth,
-      height: s.navButtonIconHeight,
-      color: s.navButtonIconColor,
-      direction: l(),
+      width: l.navButtonIconWidth,
+      height: l.navButtonIconHeight,
+      color: l.navButtonIconColor,
+      direction: s(),
     }),
   )
 }
@@ -4586,7 +4600,7 @@ function CloseIcon(e) {
   )
 }
 var templateObject_1$b,
-  templateObject_2$6,
+  templateObject_2$7,
   composeTextStyles = compose(space, color, fontSize, fontFamily, fontWeight),
   Text$1 = styled__default('div')(
     templateObject_1$b ||
@@ -4597,8 +4611,8 @@ var templateObject_1$b,
     composeTextStyles,
   ),
   Wrapper = styled__default('button')(
-    templateObject_2$6 ||
-      (templateObject_2$6 = __makeTemplateObject(
+    templateObject_2$7 ||
+      (templateObject_2$7 = __makeTemplateObject(
         [
           '\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  background: transparent;\n  padding: 0;\n  border: 0;\n\n  svg {\n    transition: color 0.15s;\n  }\n\n  &:hover {\n    ',
           ' {\n      ',
@@ -4689,8 +4703,8 @@ var opacity0To100$1 = styled.keyframes(
       return (
         e.rtl &&
         styled.css(
-          templateObject_2$7 ||
-            (templateObject_2$7 = __makeTemplateObject(
+          templateObject_2$8 ||
+            (templateObject_2$8 = __makeTemplateObject(
               ['\n      direction: rtl;\n    '],
               ['\n      direction: rtl;\n    '],
             )),
@@ -4727,8 +4741,8 @@ function Datepicker(e, t) {
     a = e.minBookingDate,
     o = e.maxBookingDate,
     i = e.focusedInput,
-    s = e.onDatesChange,
-    l = e.dayLabelFormat,
+    l = e.onDatesChange,
+    s = e.dayLabelFormat,
     c = e.weekdayLabelFormat,
     d = e.monthLabelFormat,
     u = e.onDayRender,
@@ -4767,7 +4781,7 @@ function Datepicker(e, t) {
       startDate: r,
       endDate: n,
       focusedInput: i,
-      onDatesChange: s,
+      onDatesChange: l,
       minBookingDate: a,
       maxBookingDate: o,
       minBookingDays: R,
@@ -4966,7 +4980,7 @@ function Datepicker(e, t) {
                   year: e.year,
                   month: e.month,
                   firstDayOfWeek: N,
-                  dayLabelFormat: l || Xt,
+                  dayLabelFormat: s || Xt,
                   weekdayLabelFormat: c || Gt,
                   monthLabelFormat: d || At,
                 })
@@ -5031,20 +5045,20 @@ function Datepicker(e, t) {
   )
 }
 var templateObject_1$c,
-  templateObject_2$7,
+  templateObject_2$8,
   templateObject_3$3,
   templateObject_4$1,
   templateObject_5$1,
   templateObject_6,
   templateObject_1$d,
-  templateObject_2$8,
+  templateObject_2$9,
   templateObject_3$4,
   templateObject_4$2,
   templateObject_5$2,
   Datepicker$1 = React__default.forwardRef(Datepicker),
   Wrapper$1 = styled__default(Box)(
-    templateObject_2$8 ||
-      (templateObject_2$8 = __makeTemplateObject(['\n  ', '\n  ', '\n'], ['\n  ', '\n  ', '\n'])),
+    templateObject_2$9 ||
+      (templateObject_2$9 = __makeTemplateObject(['\n  ', '\n  ', '\n'], ['\n  ', '\n  ', '\n'])),
     zIndex,
     function(e) {
       return (
@@ -5077,7 +5091,7 @@ var templateObject_1$c,
       )
     },
   ),
-  composeInputGridStyles = compose(background, border, borderRadius),
+  composeInputGridStyles = compose(background, border, borderRadius, flexDirection),
   InputGrid = styled__default(Grid)(
     templateObject_5$2 ||
       (templateObject_5$2 = __makeTemplateObject(['\n  ', '\n'], ['\n  ', '\n'])),
@@ -5119,8 +5133,8 @@ function DateRangeInput(e) {
     a = e.maxBookingDate,
     o = e.firstDayOfWeek,
     i = e.onFocusChange,
-    s = e.numberOfMonths,
-    l = e.focusedInput,
+    l = e.numberOfMonths,
+    s = e.focusedInput,
     c = e.onDatesChange,
     d = e.exactMinBookingDays,
     u = e.dayLabelFormat,
@@ -5136,39 +5150,41 @@ function DateRangeInput(e) {
     D = void 0 === v || v,
     k = e.vertical,
     x = void 0 !== k && k,
-    T = e.rtl,
-    _ = void 0 !== T && T,
-    C = e.isDateBlocked,
-    S =
-      void 0 === C
+    T = e.verticalInputs,
+    _ = void 0 === T || T,
+    C = e.rtl,
+    S = void 0 !== C && C,
+    R = e.isDateBlocked,
+    O =
+      void 0 === R
         ? function() {
             return !1
           }
-        : C,
-    R = e.minBookingDays,
-    O = void 0 === R ? 1 : R,
-    B = e.onClose,
-    W = void 0 === B ? function() {} : B,
-    M = e.showStartDateCalendarIcon,
-    j = void 0 === M || M,
-    L = e.showEndDateCalendarIcon,
+        : R,
+    B = e.minBookingDays,
+    W = void 0 === B ? 1 : B,
+    M = e.onClose,
+    j = void 0 === M ? function() {} : M,
+    L = e.showStartDateCalendarIcon,
     P = void 0 === L || L,
-    E = e.displayFormat,
-    F = void 0 === E ? 'MM/dd/yyyy' : E,
-    I = e.phrases,
-    H = void 0 === I ? dateRangeInputPhrases : I,
-    $ = e.placement,
-    z = void 0 === $ ? 'bottom' : $,
-    A = e.startDateInputId,
-    N = void 0 === A ? 'startDate' : A,
-    U = e.endDateInputId,
-    q = void 0 === U ? 'endDate' : U,
-    G = e.unavailableDates,
-    Y = void 0 === G ? [] : G,
-    Q = React.useRef(null),
-    X = React.useRef(null),
-    V = React.useContext(styled.ThemeContext),
-    Z = useThemeProps(
+    E = e.showEndDateCalendarIcon,
+    F = void 0 === E || E,
+    I = e.displayFormat,
+    H = void 0 === I ? 'MM/dd/yyyy' : I,
+    $ = e.phrases,
+    z = void 0 === $ ? dateRangeInputPhrases : $,
+    A = e.placement,
+    N = void 0 === A ? 'bottom' : A,
+    U = e.startDateInputId,
+    q = void 0 === U ? 'startDate' : U,
+    G = e.endDateInputId,
+    Y = void 0 === G ? 'endDate' : G,
+    Q = e.unavailableDates,
+    X = void 0 === Q ? [] : Q,
+    V = React.useRef(null),
+    Z = React.useRef(null),
+    J = React.useContext(styled.ThemeContext),
+    K = useThemeProps(
       __assign(
         {
           dateRangeZIndex: null,
@@ -5179,27 +5195,27 @@ function DateRangeInput(e) {
           dateRangeBorderRadius: '0',
           dateRangeArrowIconWidth: '15px',
           dateRangeArrowIconHeight: '12px',
-          dateRangeArrowIconColor: getThemeProp('graci', globalStyles.colors.graci, V),
+          dateRangeArrowIconColor: getThemeProp('graci', globalStyles.colors.graci, J),
           dateRangeArrowIconOpacity: 1,
-          dateRangeStartDateInputPadding: x ? (_ ? '0 32px 0 8px' : '0 8px 0 32px') : '0 44px',
-          dateRangeEndDateInputPadding: x ? (_ ? '0 32px 0 8px' : '0 8px 0 32px') : '0 44px',
+          dateRangeStartDateInputPadding: x ? (S ? '0 32px 0 8px' : '0 8px 0 32px') : '0 44px',
+          dateRangeEndDateInputPadding: x ? (S ? '0 32px 0 8px' : '0 8px 0 32px') : '0 44px',
           dateRangeDatepickerWrapperPosition: 'absolute',
         },
-        getPlacement(z, _),
+        getPlacement(N, S),
       ),
     )
-  function J(e) {
-    null !== l && X && X.current && !X.current.contains(e.target) && i(null)
+  function ee(e) {
+    null !== s && Z && Z.current && !Z.current.contains(e.target) && i(null)
   }
-  function K(e) {
-    Q && Q.current && Q.current.onDateSelect && Q.current.onDateSelect(e)
+  function te(e) {
+    V && V.current && V.current.onDateSelect && V.current.onDateSelect(e)
   }
   return (
     React.useEffect(function() {
       return (
-        'undefined' != typeof window && window.addEventListener('click', J),
+        'undefined' != typeof window && window.addEventListener('click', ee),
         function() {
-          window.removeEventListener('click', J)
+          window.removeEventListener('click', ee)
         }
       )
     }),
@@ -5212,100 +5228,107 @@ function DateRangeInput(e) {
       },
       React__default.createElement(
         Wrapper$1,
-        {zIndex: Z.dateRangeZIndex, rtl: _, position: 'relative', ref: X},
+        {zIndex: K.dateRangeZIndex, rtl: S, position: 'relative', ref: Z},
         React__default.createElement(
           InputGrid,
           {
             'data-testid': 'DateRangeInputGrid',
-            background: Z.dateRangeBackground,
-            gridTemplateColumns: Z.dateRangeGridTemplateColumns,
-            gridTemplateRows: Z.dateRangeGridTemplateRows,
-            border: Z.dateRangeBorder,
-            borderRadius: Z.dateRangeBorderRadius,
+            background: K.dateRangeBackground,
+            gridTemplateColumns: K.dateRangeGridTemplateColumns,
+            gridTemplateRows: K.dateRangeGridTemplateRows,
+            border: K.dateRangeBorder,
+            borderRadius: K.dateRangeBorderRadius,
+            flexDirection: _ ? 'column' : void 0,
           },
           React__default.createElement(Input, {
-            id: N,
-            ariaLabel: H.startDateAriaLabel,
-            placeholder: H.startDatePlaceholder,
-            value: ue(t, F, ''),
+            id: q,
+            ariaLabel: z.startDateAriaLabel,
+            placeholder: z.startDatePlaceholder,
+            value: ue(t, H, ''),
             onClick: function() {
               return i(ce)
             },
-            showCalendarIcon: j,
+            showCalendarIcon: P,
             vertical: x,
-            isActive: l === ce,
-            padding: Z.dateRangeStartDateInputPadding,
-            rtl: _,
-            onChange: K,
-            dateFormat: F,
+            isActive: s === ce,
+            padding: K.dateRangeStartDateInputPadding,
+            rtl: S,
+            onChange: te,
+            dateFormat: H,
           }),
-          React__default.createElement(
-            Flex,
-            {alignItems: 'center', justifyContent: 'center'},
-            React__default.createElement(InputArrowIcon, {
-              width: Z.dateRangeArrowIconWidth,
-              height: Z.dateRangeArrowIconHeight,
-              color: Z.dateRangeArrowIconColor,
-              opacity: Z.dateRangeArrowIconOpacity,
-              rtl: _,
-            }),
-          ),
+          _
+            ? React__default.createElement(
+                Flex,
+                {alignItems: 'center', justifyContent: 'center'},
+                React__default.createElement('br', null),
+              )
+            : React__default.createElement(
+                Flex,
+                {alignItems: 'center', justifyContent: 'center'},
+                React__default.createElement(InputArrowIcon, {
+                  width: K.dateRangeArrowIconWidth,
+                  height: K.dateRangeArrowIconHeight,
+                  color: K.dateRangeArrowIconColor,
+                  opacity: K.dateRangeArrowIconOpacity,
+                  rtl: S,
+                }),
+              ),
           React__default.createElement(Input, {
-            id: q,
-            ariaLabel: H.endDateAriaLabel,
-            placeholder: H.endDatePlaceholder,
-            value: ue(r, F, ''),
+            id: Y,
+            ariaLabel: z.endDateAriaLabel,
+            placeholder: z.endDatePlaceholder,
+            value: ue(r, H, ''),
             onClick: function() {
               return i(t ? de : ce)
             },
-            showCalendarIcon: P,
+            showCalendarIcon: F,
             vertical: x,
-            isActive: l === de,
-            padding: Z.dateRangeEndDateInputPadding,
-            rtl: _,
-            disableAccessibility: l === ce,
-            onChange: K,
-            dateFormat: F,
+            isActive: s === de,
+            padding: K.dateRangeEndDateInputPadding,
+            rtl: S,
+            disableAccessibility: s === ce,
+            onChange: te,
+            dateFormat: H,
           }),
         ),
         React__default.createElement(
           Box,
           {
-            position: Z.dateRangeDatepickerWrapperPosition,
-            bottom: Z.dateRangeDatepickerWrapperBottom,
-            left: Z.dateRangeDatepickerWrapperLeft,
-            top: Z.dateRangeDatepickerWrapperTop,
-            right: Z.dateRangeDatepickerWrapperRight,
+            position: K.dateRangeDatepickerWrapperPosition,
+            bottom: K.dateRangeDatepickerWrapperBottom,
+            left: K.dateRangeDatepickerWrapperLeft,
+            top: K.dateRangeDatepickerWrapperTop,
+            right: K.dateRangeDatepickerWrapperRight,
           },
-          null !== l &&
+          null !== s &&
             React__default.createElement(Datepicker$1, {
               onClose: function() {
-                W(), i(null)
+                j(), i(null)
               },
               startDate: t,
               endDate: r,
               minBookingDate: n,
               maxBookingDate: a,
               firstDayOfWeek: o,
-              numberOfMonths: s,
-              focusedInput: l,
-              displayFormat: F,
+              numberOfMonths: l,
+              focusedInput: s,
+              displayFormat: H,
               onDatesChange: c,
-              minBookingDays: O,
-              isDateBlocked: S,
+              minBookingDays: W,
+              isDateBlocked: O,
               exactMinBookingDays: d,
               showResetDates: D,
               vertical: x,
               showSelectedDates: w,
               showClose: y,
-              rtl: _,
+              rtl: S,
               dayLabelFormat: u,
               weekdayLabelFormat: p,
               monthLabelFormat: g,
               onDayRender: f,
-              phrases: H,
-              unavailableDates: Y,
-              ref: Q,
+              phrases: z,
+              unavailableDates: X,
+              ref: V,
               initialVisibleMonth: m,
             }),
         ),
@@ -5314,10 +5337,10 @@ function DateRangeInput(e) {
   )
 }
 var templateObject_1$e,
-  templateObject_2$9,
+  templateObject_2$a,
   Wrapper$2 = styled__default(Box)(
-    templateObject_2$9 ||
-      (templateObject_2$9 = __makeTemplateObject(['\n  ', '\n  ', '\n'], ['\n  ', '\n  ', '\n'])),
+    templateObject_2$a ||
+      (templateObject_2$a = __makeTemplateObject(['\n  ', '\n  ', '\n'], ['\n  ', '\n  ', '\n'])),
     zIndex,
     function(e) {
       return (
@@ -5368,8 +5391,8 @@ function DateSingleInput(e) {
     a = e.firstDayOfWeek,
     o = e.onFocusChange,
     i = e.showDatepicker,
-    s = e.onDateChange,
-    l = e.dayLabelFormat,
+    l = e.onDateChange,
+    s = e.dayLabelFormat,
     c = e.weekdayLabelFormat,
     d = e.monthLabelFormat,
     u = e.onDayRender,
@@ -5484,7 +5507,7 @@ function DateSingleInput(e) {
               onDatesChange: function(e) {
                 var t = e.focusedInput,
                   r = e.startDate
-                s({showDatepicker: null !== t, date: r})
+                l({showDatepicker: null !== t, date: r})
               },
               isDateBlocked: T,
               showResetDates: b,
@@ -5492,7 +5515,7 @@ function DateSingleInput(e) {
               showSelectedDates: !1,
               showClose: h,
               rtl: k,
-              dayLabelFormat: l,
+              dayLabelFormat: s,
               weekdayLabelFormat: c,
               monthLabelFormat: d,
               onDayRender: u,
